@@ -1,70 +1,204 @@
+
+:root{
+    --primary: #6366f1;  
+--secondary: #3b82f6; 
+--text: #1e293b;
+}
 body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    background-color: #f8f9fa;
-  }
-  
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  background-size: 200% 200%;
+  animation: gradientMove 12s ease infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   form {
-    margin-bottom: 20px;
-  }
-  
-  #search {
-    padding: 8px;
-    width: 200px;
-  }
-  
-  button {
-    padding: 8px 12px;
-    cursor: pointer;
-  }
-  
-  .movie-card {
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    padding: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
     display: flex;
     gap: 10px;
-    background-color: #fff;
+    flex-wrap: wrap;
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.15);
+    padding: 15px 20px;
+    border-radius: 50px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 0.8s ease;
   }
-  
-  .movie-card img {
-    width: 100px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 4px;
+
+  #search {
+    padding: 10px 16px;
+    width: 250px;
+    max-width: 100%;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+
+    &:focus {
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    }
   }
-  
-  .movie-info {
-    flex: 1;
+
+  button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    background:rgb(0, 55, 253);
+    transition: 0.3s;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    }
   }
-  
-  .movie-info table {
-    margin-top: 5px;
-    border-collapse: collapse;
+
+  .movie-card {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    color: white;
+    animation: slideUp 0.6s ease forwards;
+    opacity: 0;
+    transition: 0.4s;
+
+    &:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    img {
+      width: 120px;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 15px;
+      transition: 0.4s;
+
+      &:hover {
+        transform: scale(1.08);
+      }
+    }
+
+    .movie-info {
+      flex: 1;
+
+      h3 {
+        margin: 0 0 8px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      table {
+        margin-top: 8px;
+        border-collapse: collapse;
+
+        td {
+          padding: 4px 8px;
+          border-bottom: 0.1px solid rgba(255, 255, 255, 0.448);
+        }
+      }
+    }
   }
-  
-  .movie-info table td {
-    padding: 2px 8px;
-  }
-  
+
   .download-btn {
     display: inline-block;
-    margin: 5px 5px 0 0;
-    padding: 5px 10px;
-    background: #007bff;
+    margin: 10px 10px 0 0;
+    padding: 7px 15px;
+    background: linear-gradient(45deg, --primary, --secondary);
     color: white;
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: 30px;
     font-size: 14px;
+    transition: 0.3s;
+    border: 0.2px solid white;
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
   }
-  
-  .download-btn:hover {
-    background: #0056b3;
-  }
-  
+
   .error {
-    color: red;
+    color: #ffdddd;
     font-weight: bold;
+    animation: shake 0.4s ease;
   }
-  
+}
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+
+    form {
+      flex-direction: column;
+      border-radius: 20px;
+    }
+
+    #search,
+    button {
+      width: 100%;
+    }
+
+    .movie-card {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      img {
+        width: 70%;
+        height: auto;
+        max-width: 250px;
+      }
+
+      .movie-info {
+        width: 100%;
+
+        table {
+          width: 100%;
+
+          td {
+            display: block;
+            padding: 6px 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
